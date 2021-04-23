@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+class Figure
+{
+public:
+	virtual double getSquare() = 0;
+	virtual double getPerimeter() = 0;
+	virtual void showFigureType() = 0;
+};
+class Rectangle : public Figure
+{
+	double width;
+	double height;
+public:
+	Rectangle(double w, double h) : width(w), height(h)
+	{
+	}
+	double getSquare() override
+	{
+		return width * height;
+	}
+	double getPerimeter() override
+	{
+		class Circle : public Figure
+		{
+			double radius;
+		public:
+			Circle(double r) : radius(r)
+			{
+			}
+			double getSquare() override
+			{
+				return radius * radius * 3.14;
+			}
+			double getPerimeter() override
+			{
+				return 2 * 3.14 * radius;
+			}
+			void showFigureType()
+			{
+				cout << "Circle" << std::endl;
+			}
+		};
+
+		int main()
+		{
+			Rectangle r(30, 50);
+			Circle c(30);
+
+			cout << "Rectangle square: " << r.getSquare() << endl;
+			cout << "Circle square: " << c.getSquare() << endl;
+
+			return 0;
+		}
+	}
